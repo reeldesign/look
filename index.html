@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+      <style>
+        /*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*===== VARIABLES CSS =====*/
+:root{
+    --header-height: 3rem;
+    --font-medium: 500;
+}
+
+/*===== Colores =====*/
+:root{
+    --first-color: #9b40fc;
+    --white-color: #FAFAFF;
+    --dark-color: #2A3B47;
+    --text-color: #697477;
+}
+
+/*===== Fuente y tipografia =====*/
+:root{
+    --body-font: 'Montserrat', sans-serif;
+    --big-font-size: 6.25rem;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+}
+@media screen and (min-width: 768px){
+    :root{
+        --big-font-size: 10.5rem;
+        --h2-font-size: 2rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+    }
+}
+
+/*===== Margenes =====*/
+:root{
+    --mb-1: .5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+}
+
+/*===== z index =====*/
+:root{
+    --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,::before,::after{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+h1,h2,p{
+    margin: 0;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*===== CLASS CSS ===== */
+.section{
+    padding: 3rem 0;
+}
+.section-title{
+    position: relative;
+    font-size: var(--h2-font-size);
+    color: var(--dark-color);
+    margin: var(--mb-4) 0;
+    text-align: center;
+}
+.section-title::after{
+    position: absolute;
+    content: "";
+    width: 32px;
+    height: .18rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 2rem;
+    background-color: var(--first-color);
+}
+
+/*===== LAYOUT =====*/
+.bd-grid{
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 2rem;
+    width: calc(100% - 2rem);
+    margin-left: var(--mb-2);
+    margin-right: var(--mb-2);
+}
+.l-header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--first-color);
+}
+
+/*===== NAV =====*/
+.nav{
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width: 768px){
+    .nav__menu{
+        position: fixed;
+        top: var(--header-height);
+        right: -100%;
+        width: 80%;
+        height: 100%;
+        padding: 2rem;
+        background-color: rgba(255,255,255,.3);
+        transition: .5s;
+        backdrop-filter: blur(10px);
+    }
+}
+.nav__item{
+    margin-bottom: var(--mb-4);
+}
+.nav__link{
+    position: relative;
+    color: var(--dark-color);
+}
+.nav__link:hover{
+    color: var(--first-color);
+}
+.nav__logo{
+    color: var(--white-color);
+    font-size: x-large;
+    font-weight: bold;
+}
+.nav__toggle{
+    color: var(--white-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*=== Show menu ===*/
+.show{
+    right: 0;
+}
+
+/*Active menu*/
+.active::after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: .18rem;
+    left: 0;
+    top: 2rem;
+    background-color: var(--first-color);
+}
+
+/*===== HOME =====*/
+.home{
+    position: relative;
+    background-color: var(--first-color);
+    overflow: hidden;
+}
+.home__container{
+    height: calc(100vh - var(--header-height));
+    row-gap: 5rem;
+}
+.home__title{
+    align-self: flex-end;
+    font-size: var(--big-font-size);
+    color: var(--white-color);
+    line-height: .8;
+}
+.home__title span{
+    text-shadow: 0 20px 25px rgba(0,0,0,.5);
+}
+.home__scroll{
+    align-self: flex-end;
+    padding-bottom: var(--mb-4);
+}
+.home__scroll-link{
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    color: var(--white-color);
+}
+.home__img{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 295px;
+}
+
+/* ===== ABOUT =====*/
+.about__container{
+    justify-items: center;
+    row-gap: 2rem;
+    text-align: center;
+}
+.about__img{
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 120px;
+    height: 120px;
+    background-color: var();
+    border-radius: 50%;
+    overflow: hidden;
+}
+.about__img img{
+    width: 100px;
+    clip-path: circle();
+
+    
+}
+.about__subtitle{
+    font-size: var(--h2-font-size);
+    color: var(--first-color);
+    margin-bottom: var(--mb-1);
+}
+.about__text{
+    margin-bottom: var(--mb-4);
+}
+.about__profession{
+    display: block;
+    margin-bottom: var(--mb-4);
+}
+.about__social-icon{
+    font-size: 1.4rem;
+    margin: 0 var(--mb-1);
+}
+.about__social-icon:hover{
+    color: var(--first-color);
+}
+
+/* ===== SKILLS =====*/
+.skills__container{
+    row-gap: 2rem;
+}
+.skills__subtitle{
+    color: var(--first-color);
+    margin-bottom: var(--mb-3);
+}
+.skills__name{
+    display: inline-block;
+    font-size: var(--small-font-size);
+    margin-right: var(--mb-2);
+    margin-bottom: var(--mb-3);
+    padding: .25rem .5rem;
+    background-color: var(--white-color);
+    border-radius: .25rem;
+}
+.skills__name:hover{
+    background-color: var(--first-color);
+    color: var(--white-color);
+}
+.skills__img img{
+    border-radius: .5rem;
+}
+
+/* ===== PORTFOLIO =====*/
+.portfolio{
+    background-color: var(--white-color);
+}
+.portfolio__container{
+    justify-items: center;
+    row-gap: 2rem;
+}
+.portfolio__img{
+    position: relative;
+    overflow: hidden;
+}
+.portfolio__img img{
+    border-radius: .5rem;
+}
+.portfolio__link{
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,.3);
+    border-radius: .5rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: .3s;
+}
+.portfolio__img:hover .portfolio__link{
+    bottom: 0;
+}
+.portfolio__link-name{
+    color: var(--dark-color);
+}
+
+/* ===== CONTACT =====*/
+.contact__container{
+    row-gap: 2rem;
+}
+.contact__subtitle{
+    font-size: var(--normal-font-size);
+    color: var(--first-color);
+}
+.contact__text{
+    display: inline-block;
+    margin-bottom: var(--mb-2);
+}
+.contact__inputs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+}
+.contact__input{
+    width: 100%;
+    padding: .8rem;
+    outline: none;
+    border: 1.5px solid var(--dark-color);
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-4);
+    border-radius: .5rem;
+}
+.contact__button{
+    display: block;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    padding: .75rem 2.5rem;
+    margin-left: auto;
+    border-radius: .5rem;
+    border: none;
+    outline: none;
+    font-size: var(--normal-font-size);
+    cursor: pointer;
+}
+
+/* ===== FOOTER=====*/
+.footer{
+    background-color: var(--dark-color);
+}
+.footer__container{
+    row-gap: 2rem;
+}
+.footer__title{
+    font-size: var(--normal-font-size);
+    color: var(--white-color);
+    margin-bottom: var(--mb-2);
+}
+.footer__title2{
+    font-size: var(--normal-font-size);
+    color: var(--white-color);
+    margin-bottom: var(--mb-2);
+
+}
+.footer__title2 span{
+    color: #9b40fc;
+    font-weight: bold;
+    margin-bottom: var(--mb-2);
+
+
+}
+.footer__link{
+    padding: .25rem 0;
+}
+.footer__link:hover{
+    color: var(--first-color);
+}
+.footer__social{
+    font-size: 1.4rem;
+    margin-right: var(--mb-1);
+}
+.footer__social:hover{
+    color: var(--first-color);
+}
+
+/* ===== MEDIA QUERIES =====*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .home__img {
+    width: 230px;
+  }
+}
+
+@media screen and (min-width: 768px){
+    body{
+        margin: 0;
+    }
+    .section{
+        padding-top: 4rem;
+    }
+    .section-title{
+        margin-bottom: 3rem;
+    }
+    .section-title::after{
+        width: 64px;
+        top: 3rem;
+    }
+
+    .nav{
+        height: calc(var(--header-height) + 1rem);
+    }
+    .nav__list{
+        display: flex;
+    }
+    .nav__item{
+        margin-left: var(--mb-4);
+        margin-bottom: 0;
+    }
+    .nav__toggle{
+        display: none;
+    }
+    .nav__link{
+        color: var(--white-color);
+    }
+    .nav__link:hover{
+        color: var(--white-color);
+    }
+    .active::after{
+        background-color: var(--white-color);
+    }
+
+    .home__container{
+        height: 100vh;
+        grid-template-rows: 1.7fr 1fr;
+        row-gap: 0;
+    }
+    .home__img{
+        width: 524px;
+        right: 10%;
+    }
+
+    .about__container{
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        text-align: initial;
+        padding: 4rem 0;
+    }
+    .about__img{
+        width: 200px;
+        height: 200px;
+    }
+    .about__img img{
+        width: 165px;
+    }
+
+    .skills__container{
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+
+    .portfolio__container{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+
+    .contact__container{
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    .contact__form{
+        width: 380px;
+    }
+
+    .footer__container{
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .bd-grid{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* For tall screens on mobiles y desktop*/
+@media screen and (min-height: 721px) {
+    .home__container {
+        height: 640px;
+    }
+    .home__img {
+        width: 500px;
+        right: 24%;
+    }
+}
+
+      </style>
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHtgHDlNVewfAVQa5nETyRAA6roRUZOq9nYGODUG7aFpjKMcVTyQwYg-QakMDXDXu4FNd0DpblajkOlF3qCRRygaLLim7XDDuSb_gZHQppUB8s-73glfSsI_83cF2v8xSJkC50y52jX8NTmP_QsqQ2CWP9MR8qzsyMXSlqGL2R30I0WVElxxl4rnk-/s320/REEL%20%20BIG.png" />
+
+        <title>Reel Design</title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="#" class="nav__logo">#Reel_Design</a>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                        <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--===== HOME =====-->
+            <section class="home" id="home">
+                <div class="home__container bd-grid">
+                    <h1 class="home__title"><span>HE</span><br>LLO.</h1>
+
+                    <div class="home__scroll">
+                        <a href="#portfolio" class="home__scroll-link"><i class='bx bx-up-arrow-alt' ></i>Scroll down</a>
+                    </div>
+
+                    <img src="" alt="" class="home__img">
+                </div>
+            </section>
+            <!--===== SKILLS =====-->
+            <section class="skills section" id="skills">
+                <h2 class="section-title">Skills</h2>
+
+                <div class="skills__container bd-grid">
+                    <div class="skills__box">
+                        <h3 class="skills__subtitle">Video</h3>
+                        <span class="skills__name">Short Video Ads</span>
+                        <span class="skills__name">Presentations </span>
+                        <span class="skills__name">Video Editing</span>
+                        <span class="skills__name">Logo Animation</span>
+                        <span class="skills__name">Intros & Outros </span>
+                        <span class="skills__name">E-Commerce Product Videos</span>
+                        
+                        <h3 class="skills__subtitle">Design</h3>
+                        <span class="skills__name">Logo Design</span>
+                        <span class="skills__name">Business Cards & Stationery</span>
+                        <span class="skills__name">Photoshop Editing</span>
+                    </div>
+
+                    <div class="skills__img">
+                        <img src="ahttps://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYcae-P5GPy3h38wM5iLVop0GzsjTpqS3ZUa-VvRgjPUS71Vghb3x_q0DGWD7TIOkNf0SSz-n5y9vKGa7EG03yGXn69RAHKptjiyTDA0UkEwPiHwFV1HxgbFoUqefHaUioOH0j4Mkp42lfvqiWS_JlR0eAEcCM8wsmSmCiKuyp95Ot_yUdYx4Dl7WQ/s320/skill.jpg" alt="">
+                    </div>
+                </div>
+            </section>
+
+            <!--===== PORTFOLIO =====-->
+            <section class="portfolio section" id="portfolio">
+                <h2 class="section-title">Portfolio</h2>
+
+                <div class="portfolio__container bd-grid">
+                    <div class="portfolio__img">
+                        <img src="https://media2.giphy.com/media/ZypBhTwRzYPSN1Wrpn/giphy.gif" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/nrKaN8zdaOU" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="https://media3.giphy.com/media/0Eq4DwnQzspCWAoSJP/giphy.gif" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/MLUiC2Sv1yE" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="https://media4.giphy.com/media/POUh65K4W3R2qkCL4K/giphy.gif?cid=790b7611f31db1e7af33b11c6d5892930ff08b6f341bdf36&rid=giphy.gif&ct=g" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/eotaXNgGq70" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="https://media2.giphy.com/media/yYNuLipIlXnKZ8mQl4/giphy.gif?cid=790b76115abd6936cefee39e30afb6b6049089e7c13de280&rid=giphy.gif&ct=g" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/MG_RBMVXLuU" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="https://media1.giphy.com/media/AH6VTAqu2xbG4ZZsGq/giphy.gif?cid=790b76119660a2f6185f4cb90241e102a561943952fda64f&rid=giphy.gif&ct=g" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/1CMIdGpH5S0" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+
+                        <div class="portfolio__link">
+                            <a href="https://youtu.be/QKMJe1B-f3Y" class="portfolio__link-name">View details</a>
+                        </div>
+                    </div>
+                                <!--===== القسم الثاني =====-->
+                                <div class="portfolio__img">
+                                    <img src="https://media3.giphy.com/media/sVQcko3zBERM2X7IuE/giphy.gif?cid=790b7611c3857d6e40a3b55ea49a67ebbe6a57408e2c6311&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="https://youtu.be/IGv_0t0WBsQ" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media3.giphy.com/media/YODs6pNu3DsQAurK7T/giphy.gif?cid=790b76113dec7f1fd59d29e7f1ea5e66fd3e11598b6d1f4b&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media4.giphy.com/media/0i1M1NYTsnm7q2dufC/giphy.gif?cid=790b7611ea071ce8cfda246741e82fc3e724c0e64cfa0ab1&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media4.giphy.com/media/3nlOH9VuQZVxe4SDlK/giphy.gif?cid=790b76110aadc8b81a38636b9ad9853c97e708007418bddc&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media3.giphy.com/media/MP01B48KfifKoJMeFm/giphy.gif" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media1.giphy.com/media/RZUM4jYEbVQysgmXOh/giphy.gif" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                <div class="portfolio__img">
+                                    <img src="https://media2.giphy.com/media/jx7kbAUtKre4zhs6ue/giphy.gif?cid=790b7611ba41d90e6a63db899bf7af855e90e81b7917a32a&rid=giphy.gif&ct=g" alt="">
+            
+                                    <div class="portfolio__link">
+                                        <a href="#" class="portfolio__link-name">View details</a>
+                                    </div>
+                                </div>
+                                                                <!--===== القسم الثاني =====-->
+
+                </div>
+            </section>
+
+            <!--===== ABOUT =====-->
+            <section class="about section" id="about">
+                <h2 class="section-title">About</h2>
+                <div class="about__container bd-grid">
+                    <div class="about__img">
+                        <img src="https://media4.giphy.com/media/zWxAV34bbhoaHZ0SiY/giphy.gif" alt="">
+                    </div>
+
+                    <div>
+                        <h2 class="about__subtitle">I'am Laith</h2>
+                        <span class="about__profession">From Turkey</span>
+                        <p class="about__text">I have been working in the design field since from 2016
+                            And in the video field from 2017.</p>
+
+                        <div class="about__social">
+                            <a href="https://www.behance.net/reeldesign" class="about__social-icon"><i class='bx bxl-behance'></i></a>
+                            <a href="https://vimeo.com/reeldseign" class="about__social-icon"><i class='bx bxl-vimeo'></i></a>
+                            <a href="https://www.tiktok.com/@reeldeesign" class="about__social-icon"><i class='bx bx-show-alt'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <!--===== CONTACT 
+            <section class="contact section" id="contact">
+                <h2 class="section-title">Contact</h2>
+
+                <div class="contact__container bd-grid">
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">EMAIL</h3>
+                        <span class="contact__text">info.mail.com</span>
+
+                        <h3 class="contact__subtitle">PHONE</h3>
+                        <span class="contact__text">+20 999-999</span>
+
+                        <h3 class="contact__subtitle">ADRESS</h3>
+                        <span class="contact__text">My contry</span>
+                    </div>
+
+                    <form action="" class="contact__form">
+                        <div class="contact__inputs">
+                            <input type="text" placeholder="Name" class="contact__input">
+                            <input type="mail" placeholder="Email" class="contact__input">
+                        </div>
+
+                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+
+                        <input type="submit" value="Enviar" class="contact__button">
+                    </form>
+                </div>
+            </section>
+        </main>
+=====-->
+        <!--===== FOOTER =====-->
+        <footer class="footer section">
+            <div class="footer__container bd-grid">
+                <div class="footer__data">
+                    <h2 class="footer__title">Laith Hraib</h2>
+                    <p class="footer__text">My name is Laith but you can tell me Reel and this is my personal website</p>
+                    <p class="footer__title2">Copyright@ <span>Reel Design</span></p>
+
+                </div>
+
+                <div class="footer__data">
+                    <h2 class="footer__title">EXPLORE</h2>
+                    <ul>
+                        <li><a href="#home" class="footer__link">Home</a></li>
+                        <li><a href="#skills" class="footer__link">Skills</a></li>
+                        <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
+                        <li><a href="#about" class="footer__link">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__data">
+                    <h2 class="footer__title">FOLLOW</h2>
+                    <a href="https://www.facebook.com/ReelDeesign/" class="footer__social"><i class='bx bxl-facebook' ></i></a>
+                    <a href="https://www.instagram.com/reel_deesign/" class="footer__social"><i class='bx bxl-instagram' ></i></a>
+                    <a href="https://twitter.com/Reel_deesign/" class="footer__social"><i class='bx bxl-twitter' ></i></a> 
+                    <li><a href="https://heylink.me/reeldesign/" class="footer__link">heylink.me</a></li>
+  
+                </div>
+
+
+            </div>
+        </footer>
+
+        <!--===== SCROLL REVEAL =====-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
